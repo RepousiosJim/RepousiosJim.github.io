@@ -1,0 +1,34 @@
+[
+  {
+    "name": "BeatForge",
+    "image": "assets/beatforge.png",
+    "links": [
+      { "label": "Site", "href": "https://repousiosjim.github.io/beatforge-site/" },
+      { "label": "Download", "href": "https://github.com/RepousiosJim/beatforge-site/releases/latest" }
+    ]
+  },
+  {
+    "name": "EV Scooter Calculator",
+    "image": "assets/ev-scooter.png",
+    "links": [
+      { "label": "Live", "href": "https://ev-scooter-calculator.vercel.app" },
+      { "label": "Code", "href": "https://github.com/RepousiosJim/ev-scooter-calculator" }
+    ]
+  },
+  {
+    "name": "Gems-Rush",
+    "image": "assets/gems-rush.png",
+    "links": [
+      { "label": "Live", "href": "https://gems-rush.vercel.app" },
+      { "label": "Code", "href": "https://github.com/RepousiosJim/Gems-Rush" }
+    ]
+  },
+  {
+    "name": "Multiplication Master",
+    "image": "assets/multiplication-master.png",
+    "links": [
+      { "label": "Play", "href": "https://repousiosjim.github.io/multiplication-master/" },
+      { "label": "Code", "href": "https://github.com/RepousiosJim/multiplication-master" }
+    ]
+  }
+]
