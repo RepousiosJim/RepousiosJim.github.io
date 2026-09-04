@@ -112,11 +112,6 @@ header.site { border-top: none; }
 .repos .repo-desc { color: rgb(var(--fg-dim)); font-size: 0.9rem; margin-right: auto; }
 .repos .repo-live { font-size: 0.9rem; }
 
-.contact {
-  text-align: center;
-}
-.contact a { font-size: clamp(1.5rem, 4vw, 2.4rem); font-weight: 500; }
-
 footer.site {
   padding: 32px 0 60px;
   color: rgb(var(--fg-mute)); font-size: 0.85rem;
