@@ -4,30 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gemelon Studios</title>
+<meta name="description" content="Gemelon Studios is an independent software studio building desktop apps, web tools and games.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gemelon Studios">
+<meta property="og:title" content="Gemelon Studios">
+<meta property="og:description" content="Independent software studio building desktop apps, web tools and games.">
+<meta property="og:url" content="https://repousiosjim.github.io/">
+<meta property="og:image" content="https://repousiosjim.github.io/assets/beatforge.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://repousiosjim.github.io/">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="site">
   <nav class="wrap">
+    <a class="brand" href="#top">Gemelon Studios</a>
     <a href="#work">Work</a>
     <a href="#open-source">Open source</a>
   </nav>
 </header>
 
-<main>
+<main id="top">
   <section class="hero wrap">
     <h1>Independent software studio.</h1>
   </section>
 
-  <section id="work" class="wrap">
+  <section id="work" class="wrap" aria-roledescription="carousel" aria-labelledby="work-title">
+    <h2 id="work-title" class="sr-only">Featured work</h2>
     <ul class="slides"></ul>
     <button class="arrow prev" aria-label="Previous">&#8592;</button>
     <button class="arrow next" aria-label="Next">&#8594;</button>
-    <div class="dots"></div>
+    <div class="controls">
+      <div class="dots"></div>
+      <button class="pause" aria-label="Pause slideshow" hidden></button>
+    </div>
   </section>
 
   <section class="strip wrap">
@@ -45,14 +59,15 @@
     </div>
   </section>
 
-  <section id="open-source" class="wrap">
+  <section id="open-source" class="wrap" aria-labelledby="open-source-title">
+    <h2 id="open-source-title" class="sr-only">Open source</h2>
     <ul class="repos"></ul>
   </section>
 </main>
 
 <footer class="site">
   <div class="wrap">
-    <span>Gemelon Studios, 2026</span>
+    <span>Gemelon Studios, <span class="year">2026</span></span>
     <a href="https://github.com/RepousiosJim">GitHub</a>
   </div>
 </footer>
