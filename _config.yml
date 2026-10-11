@@ -1,0 +1,27 @@
+title: Gemelon Studios
+description: Gemelon Studios is an independent software studio building games, desktop apps and web tools.
+url: https://repousiosjim.github.io
+baseurl: ""
+markdown: kramdown
+
+collections:
+  projects:
+    output: true
+    permalink: /work/:name/
+
+defaults:
+  - scope:
+      type: projects
+    values:
+      layout: project
+
+# Project types: the badge on each card, and the filter button label.
+kinds:
+  games: { badge: Game, filter: Games }
+  desktop: { badge: Desktop, filter: Desktop }
+  web: { badge: Web, filter: Web }
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

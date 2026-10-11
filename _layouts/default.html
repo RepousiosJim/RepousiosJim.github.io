@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- if page.layout == "project" %}
+{%- assign meta_title = page.title | append: " · " | append: site.title -%}
+{%- assign meta_desc = page.tagline -%}
+{%- assign meta_image = page.image -%}
+{%- else %}
+{%- assign meta_title = site.title -%}
+{%- assign meta_desc = site.description -%}
+{%- assign meta_image = "/assets/ashen-hunters.webp" -%}
+{%- endif %}
+<title>{{ meta_title }}</title>
+<meta name="description" content="{{ meta_desc | escape }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ meta_title | escape }}">
+<meta property="og:description" content="{{ meta_desc | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+{%- if meta_image %}
+<meta property="og:image" content="{{ meta_image | absolute_url }}">
+<meta name="twitter:card" content="summary_large_image">
+{%- else %}
+<meta name="twitter:card" content="summary">
+{%- endif %}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+</head>
+<body>
+<header class="site">
+  <nav class="wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <a href="{{ '/#work' | relative_url }}">Work</a>
+    <a href="https://github.com/RepousiosJim">GitHub</a>
+  </nav>
+</header>
+
+<main id="top">
+{{ content }}
+</main>
+
+<dialog class="viewer" aria-label="Screenshots">
+  <figure>
+    <img alt="">
+    <figcaption><span class="viewer-count"></span> <span class="viewer-caption"></span></figcaption>
+  </figure>
+  <button class="viewer-nav prev" aria-label="Previous screenshot">&#8592;</button>
+  <button class="viewer-nav next" aria-label="Next screenshot">&#8594;</button>
+  <button class="viewer-close" aria-label="Close">&#215;</button>
+</dialog>
+
+<footer class="site">
+  <div class="wrap">
+    <span>{{ site.title }}, {{ site.time | date: "%Y" }}</span>
+    <a href="https://github.com/RepousiosJim">GitHub</a>
+  </div>
+</footer>
+
+<script src="{{ '/script.js' | relative_url }}"></script>
+</body>
+</html>

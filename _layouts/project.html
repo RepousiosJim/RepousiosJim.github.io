@@ -1,0 +1,55 @@
+---
+layout: default
+---
+{%- assign projects = site.projects | sort: "order" -%}
+<article class="project wrap">
+  <a class="back" href="{{ '/#work' | relative_url }}">&#8592; All work</a>
+  {%- if page.image %}
+  {%- if page.gallery %}
+  <button class="p-hero" data-shot="0" aria-label="Open screenshots"><img src="{{ page.image | relative_url }}" alt="{{ page.caption | default: page.title }}" width="1440" height="900"></button>
+  {%- else %}
+  <div class="p-hero"><img src="{{ page.image | relative_url }}" alt="{{ page.caption | default: page.title }}" width="1440" height="900"></div>
+  {%- endif %}
+  {%- endif %}
+  <div class="p-body">
+    <div class="p-main">
+      {% include badges.html project=page %}
+      <h1>{{ page.title }}</h1>
+      <p class="tag">{{ page.tagline }}</p>
+      <div class="pitch">{{ content }}</div>
+      {%- if page.links %}
+      <div class="p-links">
+        {%- for l in page.links %}<a class="btn{% if forloop.first %} primary{% endif %}" href="{{ l.href }}">{{ l.label }} &#8599;</a>{% endfor %}
+      </div>
+      {%- endif %}
+    </div>
+    <dl class="facts">
+      {%- for f in page.facts %}<div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>{% endfor %}
+    </dl>
+  </div>
+
+  {%- if page.image and page.gallery %}
+  <section class="gallery">
+    <h2>Screenshots</h2>
+    <div class="shots">
+      <button data-shot="0" data-src="{{ page.image | relative_url }}" data-caption="{{ page.caption | default: page.title }}"><img src="{{ page.image | relative_url }}" alt="{{ page.caption | default: page.title }}" loading="lazy" width="1440" height="900"><span>{{ page.caption | default: page.title }}</span></button>
+      {%- for g in page.gallery %}
+      <button data-shot="{{ forloop.index }}" data-src="{{ g.src | relative_url }}" data-caption="{{ g.caption }}"><img src="{{ g.src | relative_url }}" alt="{{ g.caption }}" loading="lazy"><span>{{ g.caption }}</span></button>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
+  <section class="more">
+    <h2>More work</h2>
+    <div class="grid">
+      {%- assign shown = 0 -%}
+      {%- for p in projects -%}
+        {%- if p.url != page.url and shown < 3 -%}
+          {% include card.html project=p %}
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor %}
+    </div>
+  </section>
+</article>
