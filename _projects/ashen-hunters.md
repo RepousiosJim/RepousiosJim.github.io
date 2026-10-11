@@ -4,7 +4,7 @@ order: 1
 spotlight: true
 kind: [games, desktop]
 status: In development
-tagline: A third-person action RPG with seven hunter classes, weighty skill-based combat and PvP arenas.
+tagline: "A third-person action RPG: choose one of seven hunter classes, master weighty skill-based combat, and prove it in PvP arenas."
 image: /assets/ashen-hunters.webp
 caption: An Ashen Hunter at golden hour
 gallery:
@@ -17,4 +17,4 @@ facts:
   - { label: Engine, value: Godot }
   - { label: Status, value: In development }
 ---
-Pick one of seven classes, from the shield-bearing Warden of the Gate to the frost-casting Moon Warden, and fight with deliberate, readable combat. A co-op overworld around the village of Hollowmere and PvP arenas from 1v1 to 5v5 are in development.
+Pick one of seven hunter classes, from the sword-and-shield Warden of the Gate to the Moon Warden, a ranged mage of frost and arcana. Fight with weighty, skill-based combat. PvP arenas from 1v1 to 5v5 and a co-op overworld around the market town of Hollowmere are in development.

@@ -4,15 +4,15 @@ order: 6
 kind: [games, web]
 status: Live
 code: true
-tagline: A friendly multiplication practice game for ages 6 to 10.
+tagline: A times-tables practice game for kids aged 6 to 10 that runs in any browser.
 image: /assets/multiplication-master.webp
 caption: Choose your level
 facts:
   - { label: Platform, value: Web }
   - { label: Ages, value: 6–10 }
-  - { label: Code, value: Open source }
+  - { label: Code, value: Open source (MIT) }
 links:
   - { label: Play, href: "https://repousiosjim.github.io/multiplication-master/" }
   - { label: Code, href: "https://github.com/RepousiosJim/multiplication-master" }
 ---
-Short, encouraging rounds that build times-table fluency. Runs in the browser with nothing to install.
+Ten levels, one times table each, with multiple-choice or typed answers. Kids earn stars and coins, and a mastery map shows which facts need more practice. No ads, no tracking and no account, and it works offline after the first visit.

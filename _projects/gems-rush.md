@@ -4,15 +4,15 @@ order: 4
 kind: [games, web]
 status: Live
 code: true
-tagline: A match-3 battle game with divine gems, solo or against friends in real time.
+tagline: A match-3 puzzle game with seven elemental gems that you play in the browser.
 image: /assets/gems-rush.webp
 caption: Gems-Rush board
 facts:
   - { label: Platform, value: Web }
-  - { label: Status, value: Live }
-  - { label: Code, value: Open source }
+  - { label: Stack, value: Next.js }
+  - { label: Code, value: Open source (MIT) }
 links:
   - { label: Play, href: "https://gems-rush.vercel.app" }
   - { label: Code, href: "https://github.com/RepousiosJim/Gems-Rush" }
 ---
-Classic match-3 rules with a competitive twist: progress through divine realms solo, or race friends in real-time multiplayer.
+Match three or more gems in a row to set off cascades and combos. Play the endless Classic mode, race the clock in Time Rush, or take on the daily challenge. Multiplayer is planned but not playable yet.

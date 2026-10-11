@@ -3,7 +3,7 @@ title: BeatForge
 order: 3
 kind: [desktop]
 status: Free
-tagline: An AI-assisted DAW for Windows that stays out of your way.
+tagline: A free music-making app (DAW) for Windows, with an optional AI assistant that runs on your own key.
 image: /assets/beatforge.webp
 caption: BeatForge sequencer, tracks and mixer
 facts:
@@ -14,4 +14,4 @@ links:
   - { label: Site, href: "https://repousiosjim.github.io/beatforge-site/" }
   - { label: Download, href: "https://github.com/RepousiosJim/beatforge-site/releases/latest" }
 ---
-Step sequencer, piano roll, arrangement, mixer with effects, and automation lanes. An AI assistant helps when you ask, running on your own OpenRouter key. Exports WAV, MP3 and MIDI.
+Build tracks with a step sequencer, piano roll, arrangement timeline, mixer with effects, and automation lanes. Record or import WAV audio, and export to WAV, MP3 or MIDI. An AI assistant helps only when you ask, using your own OpenRouter key.
