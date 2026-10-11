@@ -121,6 +121,7 @@ header.site { border-top: none; }
   border: 1px solid rgb(var(--border) / 0.15); background: none; color: rgb(var(--fg-dim));
   display: flex; align-items: center; justify-content: center; transition: color var(--ease);
 }
+.pause[hidden] { display: none; }
 .pause:hover { color: rgb(var(--fg-default)); }
 .pause::before {
   content: ""; width: 8px; height: 9px;
