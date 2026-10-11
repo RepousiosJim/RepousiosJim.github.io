@@ -20,7 +20,12 @@ function slideshow() {
       <img src="${esc(p.image)}" alt="${esc(p.name)}" width="1440" height="900"${i ? ' loading="lazy"' : ""}>
       <div class="slide-meta"><span class="slide-count">${String(i + 1).padStart(2, "0")} / ${total}</span>
       <span class="slide-name">${esc(p.name)}</span>
-      <span class="slide-links">${p.links.map(l => `<a href="${esc(l.href)}">${esc(l.label)} ↗</a>`).join("")}</span></div></li>`).join("");
+      ${p.status ? `<span class="slide-status">${esc(p.status)}</span>` : ""}
+      <span class="slide-links">${p.links.map(l => `<a href="${esc(l.href)}">${esc(l.label)} ↗</a>`).join("")}${p.gallery ? `<button class="shots" data-i="${i}">Screenshots (${p.gallery.length + 1})</button>` : ""}</span></div></li>`).join("");
+    list.querySelectorAll(".shots").forEach(b => b.addEventListener("click", () => {
+      const p = items[b.dataset.i];
+      openViewer([{ src: p.image, caption: p.name }, ...p.gallery]);
+    }));
     dots.innerHTML = items.map((_, i) => `<button aria-label="Slide ${i + 1}"></button>`).join("");
     dots.querySelectorAll("button").forEach((b, i) => b.addEventListener("click", () => goTo(i)));
     section.querySelector(".prev").addEventListener("click", () => goTo(index - 1));
@@ -30,7 +35,7 @@ function slideshow() {
       pause.hidden = false;
       pause.addEventListener("click", () => { paused = !paused; update(); });
       setInterval(() => {
-        if (paused || section.matches(":hover") || section.contains(document.activeElement)) return;
+        if (paused || document.querySelector(".viewer").open || section.matches(":hover") || section.contains(document.activeElement)) return;
         goTo(index + 1);
       }, 6000);
     } else {
@@ -65,6 +70,29 @@ function slideshow() {
     if (e.key === "ArrowLeft") goTo(index - 1);
     if (e.key === "ArrowRight") goTo(index + 1);
   });
+}
+
+function openViewer(shots) {
+  const viewer = document.querySelector(".viewer");
+  const img = viewer.querySelector("img");
+  let i = 0;
+  const show = n => {
+    i = (n + shots.length) % shots.length;
+    img.src = shots[i].src;
+    img.alt = shots[i].caption;
+    viewer.querySelector(".viewer-count").textContent = `${i + 1} / ${shots.length}`;
+    viewer.querySelector(".viewer-caption").textContent = shots[i].caption;
+  };
+  viewer.querySelector(".prev").onclick = () => show(i - 1);
+  viewer.querySelector(".next").onclick = () => show(i + 1);
+  viewer.querySelector(".viewer-close").onclick = () => viewer.close();
+  viewer.onclick = e => { if (e.target === viewer) viewer.close(); };
+  viewer.onkeydown = e => {
+    if (e.key === "ArrowLeft") show(i - 1);
+    if (e.key === "ArrowRight") show(i + 1);
+  };
+  show(0);
+  viewer.showModal();
 }
 
 function loadProjects() {

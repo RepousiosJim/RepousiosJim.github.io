@@ -3,32 +3,92 @@
     "name": "BeatForge",
     "image": "assets/beatforge.webp",
     "links": [
-      { "label": "Site", "href": "https://repousiosjim.github.io/beatforge-site/" },
-      { "label": "Download", "href": "https://github.com/RepousiosJim/beatforge-site/releases/latest" }
+      {
+        "label": "Site",
+        "href": "https://repousiosjim.github.io/beatforge-site/"
+      },
+      {
+        "label": "Download",
+        "href": "https://github.com/RepousiosJim/beatforge-site/releases/latest"
+      }
+    ]
+  },
+  {
+    "name": "Bridge",
+    "image": "assets/bridge.webp",
+    "status": "Self-hosted · Windows + phone",
+    "links": [],
+    "gallery": [
+      {
+        "src": "assets/bridge-photos.webp",
+        "caption": "Photos from your phone and PC in one library"
+      },
+      {
+        "src": "assets/bridge-files.webp",
+        "caption": "Real folders and real filenames on your own drive"
+      },
+      {
+        "src": "assets/bridge-preview.webp",
+        "caption": "Inline previews for images, video, audio and PDFs"
+      },
+      {
+        "src": "assets/bridge-notes.webp",
+        "caption": "Markdown notes, kept forever"
+      },
+      {
+        "src": "assets/bridge-snippets.webp",
+        "caption": "A shared clipboard between phone and PC"
+      },
+      {
+        "src": "assets/bridge-pair.webp",
+        "caption": "Pair a phone with a one-time QR code"
+      },
+      {
+        "src": "assets/bridge-phone.webp",
+        "caption": "Installs on your phone's home screen"
+      }
     ]
   },
   {
     "name": "EV Scooter Calculator",
     "image": "assets/ev-scooter.webp",
     "links": [
-      { "label": "Live", "href": "https://ev-scooter-calculator.vercel.app" },
-      { "label": "Code", "href": "https://github.com/RepousiosJim/ev-scooter-calculator" }
+      {
+        "label": "Live",
+        "href": "https://ev-scooter-calculator.vercel.app"
+      },
+      {
+        "label": "Code",
+        "href": "https://github.com/RepousiosJim/ev-scooter-calculator"
+      }
     ]
   },
   {
     "name": "Gems-Rush",
     "image": "assets/gems-rush.webp",
     "links": [
-      { "label": "Live", "href": "https://gems-rush.vercel.app" },
-      { "label": "Code", "href": "https://github.com/RepousiosJim/Gems-Rush" }
+      {
+        "label": "Live",
+        "href": "https://gems-rush.vercel.app"
+      },
+      {
+        "label": "Code",
+        "href": "https://github.com/RepousiosJim/Gems-Rush"
+      }
     ]
   },
   {
     "name": "Multiplication Master",
     "image": "assets/multiplication-master.webp",
     "links": [
-      { "label": "Play", "href": "https://repousiosjim.github.io/multiplication-master/" },
-      { "label": "Code", "href": "https://github.com/RepousiosJim/multiplication-master" }
+      {
+        "label": "Play",
+        "href": "https://repousiosjim.github.io/multiplication-master/"
+      },
+      {
+        "label": "Code",
+        "href": "https://github.com/RepousiosJim/multiplication-master"
+      }
     ]
   }
 ]
