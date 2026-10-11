@@ -24,7 +24,7 @@ function slideshow() {
       <span class="slide-links">${p.links.map(l => `<a href="${esc(l.href)}">${esc(l.label)} ↗</a>`).join("")}${p.gallery ? `<button class="shots" data-i="${i}">Screenshots (${p.gallery.length + 1})</button>` : ""}</span></div></li>`).join("");
     list.querySelectorAll(".shots").forEach(b => b.addEventListener("click", () => {
       const p = items[b.dataset.i];
-      openViewer([{ src: p.image, caption: p.name }, ...p.gallery]);
+      openViewer([{ src: p.image, caption: p.caption || p.name }, ...p.gallery]);
     }));
     dots.innerHTML = items.map((_, i) => `<button aria-label="Slide ${i + 1}"></button>`).join("");
     dots.querySelectorAll("button").forEach((b, i) => b.addEventListener("click", () => goTo(i)));
