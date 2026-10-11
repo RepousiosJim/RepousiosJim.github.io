@@ -1,5 +1,22 @@
 [
   {
+    "name": "Ashen Hunters",
+    "image": "assets/ashen-hunters.webp",
+    "caption": "An Ashen Hunter at golden hour",
+    "status": "Windows · In development",
+    "links": [],
+    "gallery": [
+      {
+        "src": "assets/ashen-hunters-classes.webp",
+        "caption": "Seven hunter classes, each with its own role"
+      },
+      {
+        "src": "assets/ashen-hunters-moon-warden.webp",
+        "caption": "Moon Warden, ranged mage of frost and arcana"
+      }
+    ]
+  },
+  {
     "name": "BeatForge",
     "image": "assets/beatforge.webp",
     "links": [
