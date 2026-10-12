@@ -5,8 +5,8 @@
 # A project takes part when its front matter has `repo: owner/name`.
 # - `updated:` becomes the date of the latest commit on the repo's default branch
 #   (it never moves backwards).
-# - A fact with `label: Version` becomes the latest release tag, or the highest
-#   version tag when the repo has no releases.
+# - A fact with `label: Version` becomes the newer of the latest release tag and
+#   the highest version tag (it never moves backwards either).
 # Repos the token can't read are skipped with a warning, so the job never fails
 # just because one repo is private.
 require "json"
@@ -31,13 +31,16 @@ def version_key(tag)
   tag.to_s.sub(/\Av/i, "").split(/[.\-+]/).map { |p| p =~ /\A\d+\z/ ? [0, p.to_i] : [1, p] }
 end
 
+VERSION_TAG = /\Av?\d+(\.\d+)+/
+
+# A repo can have a newer tag than its latest release, so consider both.
 def latest_version(repo)
+  names = []
   code, rel = api("/repos/#{repo}/releases/latest")
-  return rel["tag_name"] if code == 200 && rel && rel["tag_name"]
+  names << rel["tag_name"] if code == 200 && rel && rel["tag_name"]
   code, tags = api("/repos/#{repo}/tags?per_page=100")
-  return nil unless code == 200 && tags.is_a?(Array)
-  names = tags.map { |t| t["name"] }.grep(/\Av?\d+(\.\d+)+/)
-  names.max_by { |n| version_key(n) }
+  names.concat(tags.map { |t| t["name"] }) if code == 200 && tags.is_a?(Array)
+  names.grep(VERSION_TAG).max_by { |n| version_key(n) }
 end
 
 changes = []
@@ -73,7 +76,7 @@ Dir["_projects/*.md"].sort.each do |path|
   if text =~ version_line
     tag = latest_version(repo)
     old = text[version_line, 3].strip
-    if tag && tag != old
+    if tag && tag != old && (old !~ VERSION_TAG || (version_key(tag) <=> version_key(old)) == 1)
       text = text.sub(version_line) { "#{$1}#{$2}#{tag}#{$4}#{$5}" }
       changes << "#{path}: version #{old} -> #{tag}"
     end

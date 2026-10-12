@@ -76,8 +76,8 @@ builds the site with the GitHub Pages toolchain and checks every internal link a
 ## Automatic dates and versions
 `.github/workflows/sync-projects.yml` runs every Monday (and on demand from the Actions tab → "Sync project
 dates and versions" → Run workflow). For every project with a `repo:` it sets `updated:` to the repo's latest
-commit date and a `Version` fact to the latest release (or highest version tag), checks that the site still
-builds, then commits to `main`.
+commit date and a `Version` fact to the newer of the latest release and the highest version tag (neither
+ever moves backwards), checks that the site still builds, then commits to `main`.
 
 Private repos need a token, because the workflow's own token can only read public repos:
 1. GitHub → Settings → Developer settings → Fine-grained personal access tokens → Generate new token.
