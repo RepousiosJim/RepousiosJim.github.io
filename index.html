@@ -1,46 +1,48 @@
 ---
 layout: default
 ---
-{%- assign projects = site.projects | sort: "order" -%}
+{%- assign projects = site.projects | sort: "order", "last" -%}
 {%- assign spotlight = projects | where: "spotlight", true | first -%}
-{%- assign rest = projects | where_exp: "p", "p.url != spotlight.url" -%}
+{%- unless spotlight.image -%}{%- assign spotlight = projects | where_exp: "p", "p.image" | first -%}{%- endunless -%}
 <section class="intro wrap">
   <h1>Independent software studio.</h1>
   <p>Gemelon Studios makes games, desktop apps and web tools, from an action RPG in development to a free music app for Windows and small browser games.</p>
 </section>
 
+{%- if spotlight %}
 <section class="wrap" aria-label="Now building">
   <a class="spotlight" href="{{ spotlight.url | relative_url }}">
-    <img src="{{ spotlight.image | relative_url }}" alt="{{ spotlight.caption | default: spotlight.title }}" width="1440" height="900">
+    {% include img.html src=spotlight.image alt="" sizes="(max-width: 1100px) calc(100vw - 40px), 1060px" priority=true %}
     <div class="shade"></div>
     <div class="copy">
       <span class="eyebrow">Now building</span>
-      <h2>{{ spotlight.title }}</h2>
-      <p>{{ spotlight.tagline }}</p>
+      <h2>{{ spotlight.title | escape }}</h2>
+      <p>{{ spotlight.tagline | escape }}</p>
       {% include badges.html project=spotlight %}
-      <span class="btn primary">View project &#8594;</span>
+      <span class="btn primary" aria-hidden="true">View project &#8594;</span>
     </div>
   </a>
 </section>
+{%- endif %}
 
 <section id="work" class="index wrap" aria-labelledby="work-title">
   <div class="index-head">
     <h2 id="work-title">All work</h2>
-    <div class="filters" role="group" aria-label="Filter projects">
-      <button data-filter="all" aria-pressed="true">All<span class="n">{{ rest | size }}</span></button>
+    <div class="filters" role="group" aria-label="Filter projects" hidden>
+      <button data-filter="all" aria-pressed="true">All<span class="n"><span class="sr-only">, </span>{{ projects | size }}</span></button>
       {%- for k in site.kinds -%}
         {%- assign key = k[0] -%}
-        {%- assign n = rest | where_exp: "p", "p.kind contains key" | size -%}
-        {%- if n > 0 %}<button data-filter="{{ key }}" aria-pressed="false">{{ k[1].filter }}<span class="n">{{ n }}</span></button>{% endif -%}
+        {%- assign n = projects | where_exp: "p", "p.kind contains key" | size -%}
+        {%- if n > 0 %}<button data-filter="{{ key }}" aria-pressed="false">{{ k[1].filter }}<span class="n"><span class="sr-only">, </span>{{ n }}</span></button>{% endif -%}
       {%- endfor -%}
-      {%- assign n = rest | where: "code", true | size -%}
-      {%- if n > 0 %}<button data-filter="code" aria-pressed="false">Open source<span class="n">{{ n }}</span></button>{% endif %}
+      {%- assign n = projects | where: "code", true | size -%}
+      {%- if n > 0 %}<button data-filter="code" aria-pressed="false">Open source<span class="n"><span class="sr-only">, </span>{{ n }}</span></button>{% endif %}
     </div>
   </div>
+  <p class="sr-only" role="status" aria-live="polite"></p>
   <div class="grid">
-    {%- for p in rest %}
+    {%- for p in projects %}
     {% include card.html project=p %}
     {%- endfor %}
   </div>
-  <p class="empty" hidden>No projects in this category yet.</p>
 </section>

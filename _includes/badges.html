@@ -5,7 +5,7 @@
     {%- when "Live", "Free" -%}{%- assign tone = "live" -%}
     {%- else -%}{%- assign tone = "" -%}
   {%- endcase -%}
-  <span class="badge {{ tone }}">{{ p.status }}</span>
-  {%- for k in p.kind %}<span class="badge">{{ site.kinds[k].badge }}</span>{% endfor -%}
-  {%- if p.code %}<span class="badge">Code</span>{% endif -%}
+  {%- if p.status %}<span class="badge {{ tone }}">{{ p.status | escape }}</span>{% endif -%}
+  {%- for k in p.kind %}<span class="badge">{{ site.kinds[k].badge | default: k | capitalize | escape }}</span>{% endfor -%}
+  {%- if p.code %}<span class="badge">Open source</span>{% endif -%}
 </div>

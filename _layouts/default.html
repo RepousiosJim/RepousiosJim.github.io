@@ -3,57 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{%- if page.layout == "project" %}
+{%- assign is_project = false -%}{%- if page.collection == "projects" -%}{%- assign is_project = true -%}{%- endif -%}
+{%- if is_project %}
 {%- assign meta_title = page.title | append: " · " | append: site.title -%}
 {%- assign meta_desc = page.tagline -%}
-{%- assign meta_image = page.image -%}
+{%- assign meta_image = page.image | default: site.share_image -%}
+{%- assign meta_alt = page.caption | default: page.title -%}
 {%- else %}
-{%- assign meta_title = site.title -%}
+{%- assign meta_title = page.title | default: site.home_title -%}
 {%- assign meta_desc = site.description -%}
-{%- assign meta_image = "/assets/ashen-hunters.webp" -%}
+{%- assign meta_image = site.share_image -%}
+{%- assign meta_alt = site.title -%}
 {%- endif %}
-<title>{{ meta_title }}</title>
+<title>{{ meta_title | escape }}</title>
 <meta name="description" content="{{ meta_desc | escape }}">
-<meta property="og:type" content="website">
+<meta name="theme-color" content="#171614">
+<meta property="og:type" content="{% if is_project %}article{% else %}website{% endif %}">
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{{ meta_title | escape }}">
 <meta property="og:description" content="{{ meta_desc | escape }}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
-{%- if meta_image %}
 <meta property="og:image" content="{{ meta_image | absolute_url }}">
+<meta property="og:image:alt" content="{{ meta_alt | escape }}">
 <meta name="twitter:card" content="summary_large_image">
-{%- else %}
-<meta name="twitter:card" content="summary">
-{%- endif %}
 <link rel="canonical" href="{{ page.url | absolute_url }}">
-<link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+<link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}" sizes="any">
+<link rel="icon" href="{{ '/assets/icon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+<link rel="preload" href="{{ '/assets/fonts/inter-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
+<a class="skip" href="#top">Skip to content</a>
 <header class="site">
-  <nav class="wrap">
+  <nav class="wrap" aria-label="Main">
     <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <a href="{{ '/#work' | relative_url }}">Work</a>
+    <a href="{{ '/#work' | relative_url }}"{% if is_project %} aria-current="true"{% endif %}>Work</a>
     <a href="https://github.com/RepousiosJim">GitHub</a>
   </nav>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 {{ content }}
 </main>
 
+{%- if is_project and page.gallery and page.gallery.size > 0 %}
 <dialog class="viewer" aria-label="Screenshots">
   <figure>
-    <img alt="">
-    <figcaption><span class="viewer-count"></span> <span class="viewer-caption"></span></figcaption>
+    <img alt="" draggable="false">
+    <figcaption aria-live="polite"><span class="viewer-count"></span> <span class="viewer-caption"></span></figcaption>
   </figure>
   <button class="viewer-nav prev" aria-label="Previous screenshot">&#8592;</button>
   <button class="viewer-nav next" aria-label="Next screenshot">&#8594;</button>
-  <button class="viewer-close" aria-label="Close">&#215;</button>
+  <button class="viewer-close" aria-label="Close" autofocus>&#215;</button>
 </dialog>
+{%- endif %}
 
 <footer class="site">
   <div class="wrap">
@@ -62,6 +66,6 @@
   </div>
 </footer>
 
-<script src="{{ '/script.js' | relative_url }}"></script>
+<script src="{{ '/script.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 </body>
 </html>

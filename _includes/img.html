@@ -1,0 +1,12 @@
+{%- comment -%}
+Responsive <img>. Params: src, alt, sizes, class, lazy, priority.
+Uses the 480/800px versions in /assets/sm/ when they exist (see README).
+{%- endcomment -%}
+{%- assign base = include.src | split: "/" | last | replace: ".webp", "" -%}
+{%- assign sm480 = "/assets/sm/" | append: base | append: "-480.webp" -%}
+{%- assign sm800 = "/assets/sm/" | append: base | append: "-800.webp" -%}
+{%- assign has_sm = site.static_files | where: "path", sm800 | size -%}
+<img src="{{ include.src | relative_url }}"
+  {%- if has_sm > 0 %} srcset="{{ sm480 | relative_url }} 480w, {{ sm800 | relative_url }} 800w, {{ include.src | relative_url }} 1440w" sizes="{{ include.sizes }}"{% endif %}
+  alt="{{ include.alt | escape }}" width="1440" height="900"
+  {%- if include.lazy %} loading="lazy"{% endif %}{% if include.priority %} fetchpriority="high"{% endif %}>

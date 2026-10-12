@@ -1,8 +1,16 @@
 title: Gemelon Studios
 description: Gemelon Studios is an independent software studio building games, desktop apps and web tools.
+home_title: "Gemelon Studios · Games, desktop apps and web tools"
+share_image: /assets/share.jpg
 url: https://repousiosjim.github.io
 baseurl: ""
 markdown: kramdown
+
+# No GitHub Pages default theme: it would publish an unused stylesheet.
+theme: null
+
+plugins:
+  - jekyll-sitemap
 
 collections:
   projects:
@@ -21,7 +29,17 @@ kinds:
   desktop: { badge: Desktop, filter: Desktop }
   web: { badge: Web, filter: Web }
 
+# Setting exclude replaces Jekyll's defaults, so list everything that must stay private.
+# GitHub Pages publishes any other .md file as a page.
 exclude:
   - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - LICENSE
   - Gemfile
   - Gemfile.lock
+  - node_modules
+  - vendor
+  - docs
+  - plans
+  - tools

@@ -1,7 +1,10 @@
 function filters() {
-  const buttons = document.querySelectorAll(".filters button");
+  const group = document.querySelector(".filters");
+  if (!group) return;
+  const buttons = group.querySelectorAll("button");
   const cards = document.querySelectorAll(".index .card");
-  const empty = document.querySelector(".index .empty");
+  const status = document.querySelector(".index [role=status]");
+  group.hidden = false;
   buttons.forEach(b => b.addEventListener("click", () => {
     const f = b.dataset.filter;
     buttons.forEach(x => x.setAttribute("aria-pressed", x === b));
@@ -11,26 +14,28 @@ function filters() {
       c.hidden = !hit;
       if (hit) shown++;
     });
-    empty.hidden = shown > 0;
+    const name = b.firstChild.textContent.trim();
+    status.textContent = `${name}: ${shown} ${shown === 1 ? "project" : "projects"} shown`;
   }));
 }
 
 function viewer() {
-  const buttons = [...document.querySelectorAll(".shots button")];
-  if (!buttons.length) return;
-  const shots = buttons.map(b => ({ src: b.dataset.src, caption: b.dataset.caption }));
   const dialog = document.querySelector(".viewer");
+  if (!dialog) return;
+  const triggers = [...document.querySelectorAll("[data-shot]")];
+  const shots = [];
+  triggers.forEach(t => { shots[Number(t.dataset.shot)] = { src: t.dataset.src, caption: t.dataset.caption }; });
   const img = dialog.querySelector("img");
   let i = 0;
   const show = n => {
     i = (n + shots.length) % shots.length;
     img.src = shots[i].src;
-    img.alt = shots[i].caption;
     dialog.querySelector(".viewer-count").textContent = `${i + 1} / ${shots.length}`;
     dialog.querySelector(".viewer-caption").textContent = shots[i].caption;
   };
-  document.querySelectorAll("[data-shot]").forEach(b => b.addEventListener("click", () => {
-    show(Number(b.dataset.shot));
+  triggers.forEach(t => t.addEventListener("click", e => {
+    e.preventDefault();
+    show(Number(t.dataset.shot));
     dialog.showModal();
   }));
   dialog.querySelector(".prev").addEventListener("click", () => show(i - 1));
@@ -40,6 +45,15 @@ function viewer() {
   dialog.addEventListener("keydown", e => {
     if (e.key === "ArrowLeft") show(i - 1);
     if (e.key === "ArrowRight") show(i + 1);
+  });
+  let startX = null;
+  dialog.addEventListener("pointerdown", e => { startX = e.clientX; });
+  dialog.addEventListener("pointercancel", () => { startX = null; });
+  dialog.addEventListener("pointerup", e => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 40) show(dx < 0 ? i + 1 : i - 1);
   });
 }
 
