@@ -1,6 +1,7 @@
 ---
 title: BeatForge
 order: 3
+repo: RepousiosJim/beatforge-site
 kind: [desktop]
 updated: 2026-09-04
 status: Early access

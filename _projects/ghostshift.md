@@ -1,6 +1,7 @@
 ---
 title: GhostShift
 order: 7
+repo: RepousiosJim/ghostshift
 kind: [games, desktop]
 started: 2026-02-21
 updated: 2026-02-25

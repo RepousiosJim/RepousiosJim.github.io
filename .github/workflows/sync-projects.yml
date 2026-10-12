@@ -1,0 +1,58 @@
+name: Sync project dates and versions
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"   # Mondays 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: sync-projects
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Read latest commits and releases
+        run: ruby tools/sync_projects.rb
+        env:
+          # A fine-grained token with read access to the private project repos.
+          # Without it, private repos are skipped and public ones still update.
+          GITHUB_TOKEN: ${{ secrets.PORTFOLIO_SYNC_TOKEN || github.token }}
+
+      - name: Stop if nothing changed
+        id: diff
+        run: |
+          if git diff --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; git diff; fi
+
+      - name: Check the site still builds
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          ruby tools/check_projects.rb
+          bundle exec jekyll build
+          bundle exec htmlproofer _site --disable-external --ignore-urls "/feed.xml/"
+
+      - name: Commit to main
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _projects
+          git commit -m "Sync project dates and versions"
+          git push
+
+      - name: Rebuild GitHub Pages
+        if: steps.diff.outputs.changed == 'true'
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build request failed; the next push will rebuild the site"
+        env:
+          GH_TOKEN: ${{ github.token }}

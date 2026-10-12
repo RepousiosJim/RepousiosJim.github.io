@@ -1,6 +1,7 @@
 ---
 title: Gems-Rush
 order: 4
+repo: RepousiosJim/Gems-Rush
 kind: [games, web]
 started: 2025-05-24
 updated: 2025-05-30

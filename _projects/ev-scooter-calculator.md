@@ -1,6 +1,7 @@
 ---
 title: EV Scooter Calculator
 order: 5
+repo: RepousiosJim/ev-scooter-calculator
 kind: [web]
 updated: 2026-10-12
 status: Early access

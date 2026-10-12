@@ -2,6 +2,7 @@
 title: Ashen Hunters
 order: 1
 spotlight: true
+repo: RepousiosJim/Ashen-Hunters-Gemelongames
 kind: [games, desktop]
 updated: 2026-10-12
 status: In development
