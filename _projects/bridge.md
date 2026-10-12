@@ -4,7 +4,7 @@ order: 2
 repo: RepousiosJim/bridgefiles
 kind: [desktop]
 started: 2026-05-01
-updated: 2026-10-11
+updated: 2026-10-12
 status: In development
 tagline: A self-hosted drive between your phone and your own PC that keeps your files as real files on disk.
 image: /assets/bridge.webp
