@@ -17,6 +17,7 @@
   --accent: #5dcaa5;
   --accent-hover: #73d6b4;
   --amber: #e2b45c;
+  --green: #a3d97f;
   --max: 1100px;
   --ease: 160ms ease;
 }
@@ -78,7 +79,8 @@ footer.site a:hover { color: var(--fg-dim); }
   border: 1px solid var(--line-strong); color: var(--fg-dim);
 }
 .badge.dev { color: var(--amber); border-color: rgb(226 180 92 / 0.4); }
-.badge.live { color: var(--accent); border-color: rgb(93 202 165 / 0.4); }
+.badge.early { color: var(--accent); border-color: rgb(93 202 165 / 0.4); }
+.badge.live { color: var(--green); border-color: rgb(163 217 127 / 0.4); }
 
 /* Home */
 .intro { padding-block: 64px 40px; display: grid; gap: 16px; }
@@ -151,6 +153,7 @@ footer.site a:hover { color: var(--fg-dim); }
 .card .meta { display: grid; gap: 6px; }
 .card h3 { font-size: 1.05rem; font-weight: 600; }
 .card .line { color: var(--fg-dim); font-size: 0.9rem; margin: 0; }
+.card .updated { color: var(--fg-mute); font-size: 0.8rem; margin: 0; }
 
 /* Project page */
 .project { padding-block: 32px 80px; display: grid; gap: 40px; }
@@ -187,6 +190,44 @@ a.p-hero:hover img { border-color: var(--accent); }
 .shots span { font-size: 0.82rem; }
 .more { border-top: 1px solid var(--line); padding-top: 32px; }
 
+/* Devlog */
+.devlog { padding-bottom: 80px; }
+.home-devlog { padding-bottom: 80px; display: grid; gap: 20px; }
+.home-devlog .index-head a { font-size: 0.9rem; }
+.post-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.post-item {
+  display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 20px;
+  padding: 18px 0; border-bottom: 1px solid var(--line);
+}
+.post-item time { color: var(--fg-mute); font-size: 0.85rem; font-variant-numeric: tabular-nums; padding-top: 2px; }
+.post-item div { display: grid; gap: 6px; justify-items: start; }
+.post-item .post-title { color: var(--fg); font-weight: 600; font-size: 1.05rem; }
+.post-item .post-title:hover { color: var(--accent); text-decoration: none; }
+.post-item p { margin: 0; color: var(--fg-dim); font-size: 0.92rem; max-width: 70ch; }
+.muted { color: var(--fg-mute); }
+.related h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+.post { padding-block: 32px 80px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; max-width: 760px; }
+.post-meta a { text-decoration: underline; text-underline-offset: 3px; }
+.post-meta { margin: 0; color: var(--fg-mute); font-size: 0.9rem; }
+.post-body { color: var(--fg); font-size: 1.05rem; line-height: 1.7; }
+.post-body > * { margin: 0 0 18px; }
+.post-body h2 { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.01em; margin-top: 36px; }
+.post-body h3 { font-size: 1.1rem; font-weight: 600; margin-top: 28px; }
+.post-body a { text-decoration: underline; text-underline-offset: 3px; }
+.post-body img { display: block; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line-strong); }
+.post-body figure { margin: 8px 0 24px; display: grid; gap: 8px; }
+.post-body figcaption { color: var(--fg-mute); font-size: 0.88rem; }
+.post-body ul, .post-body ol { padding-left: 22px; }
+.post-body li { margin-bottom: 6px; }
+.post-body table { border-collapse: collapse; width: 100%; font-size: 0.95rem; display: block; overflow-x: auto; }
+.post-body th, .post-body td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.post-body th { color: var(--fg-mute); font-weight: 500; }
+.post-body blockquote { margin-left: 0; padding-left: 16px; border-left: 2px solid var(--accent); color: var(--fg-dim); font-style: italic; }
+.post-nav { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding-top: 24px; }
+.post-nav a { display: grid; gap: 4px; color: var(--fg); max-width: 45%; }
+.post-nav a span { color: var(--fg-mute); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.post-nav .newer { text-align: right; justify-items: end; }
+
 /* Screenshot viewer */
 .viewer {
   width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 56px 72px;
@@ -219,6 +260,7 @@ a.p-hero:hover img { border-color: var(--accent); }
 }
 
 @media (max-width: 760px) {
+  .post-item { grid-template-columns: 1fr; gap: 4px; }
   .p-body { grid-template-columns: 1fr; gap: 28px; }
   .facts div:last-child { border-bottom: 0; }
   .viewer img { max-height: calc(100vh - 150px); }

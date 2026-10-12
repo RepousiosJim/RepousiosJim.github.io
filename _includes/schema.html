@@ -1,0 +1,54 @@
+{%- comment -%} Structured data (JSON-LD) for search engines. {%- endcomment -%}
+{%- assign org_url = "/" | absolute_url -%}
+{%- if include.is_project -%}
+  {%- assign platform = "" -%}
+  {%- for f in page.facts -%}{%- if f.label == "Platform" -%}{%- assign platform = f.value -%}{%- endif -%}{%- endfor -%}
+  {%- if page.kind contains "games" -%}{%- assign type = "VideoGame" -%}{%- else -%}{%- assign type = "SoftwareApplication" -%}{%- endif -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": {{ type | jsonify }},
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.tagline | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "image": {{ include.meta_image | absolute_url | jsonify }},
+  {%- if type == "VideoGame" %}
+  "gamePlatform": {{ platform | jsonify }},
+  "applicationCategory": "Game",
+  {%- else %}
+  "applicationCategory": {% if page.kind contains "web" %}"WebApplication"{% else %}"DesktopApplication"{% endif %},
+  {%- endif %}
+  "operatingSystem": {{ platform | jsonify }},
+  "creator": { "@type": "Organization", "name": {{ site.title | jsonify }}, "url": {{ org_url | jsonify }} }
+}
+</script>
+{%- elsif include.is_post -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ include.meta_desc | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "image": {{ include.meta_image | absolute_url | jsonify }},
+  "author": { "@type": "Organization", "name": {{ site.title | jsonify }}, "url": {{ org_url | jsonify }} }
+}
+</script>
+{%- elsif page.url == "/" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": {{ site.title | jsonify }},
+      "url": {{ org_url | jsonify }},
+      "logo": {{ "/assets/apple-touch-icon.png" | absolute_url | jsonify }},
+      "sameAs": ["https://github.com/RepousiosJim"]
+    },
+    { "@type": "WebSite", "name": {{ site.title | jsonify }}, "url": {{ org_url | jsonify }} }
+  ]
+}
+</script>
+{%- endif -%}

@@ -2,7 +2,8 @@
 <div class="badges">
   {%- case p.status -%}
     {%- when "In development", "Prototype" -%}{%- assign tone = "dev" -%}
-    {%- when "Live", "Free" -%}{%- assign tone = "live" -%}
+    {%- when "Early access" -%}{%- assign tone = "early" -%}
+    {%- when "Released" -%}{%- assign tone = "live" -%}
     {%- else -%}{%- assign tone = "" -%}
   {%- endcase -%}
   {%- if p.status %}<span class="badge {{ tone }}">{{ p.status | escape }}</span>{% endif -%}

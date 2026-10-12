@@ -46,3 +46,17 @@ layout: default
     {%- endfor %}
   </div>
 </section>
+
+{%- if site.posts.size > 0 %}
+<section class="wrap home-devlog" aria-labelledby="devlog-title">
+  <div class="index-head">
+    <h2 id="devlog-title">From the devlog</h2>
+    <a href="{{ '/devlog/' | relative_url }}">All posts &#8594;</a>
+  </div>
+  <ul class="post-list">
+    {%- for post in site.posts limit: 3 %}
+    {% include post-item.html post=post show_project=true %}
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}

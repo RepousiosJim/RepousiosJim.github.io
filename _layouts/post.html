@@ -1,0 +1,20 @@
+---
+layout: default
+---
+{%- assign ppath = "/work/" | append: page.project | append: "/" -%}
+{%- assign proj = site.projects | where: "url", ppath | first -%}
+<article class="post wrap">
+  <a class="back" href="{{ '/devlog/' | relative_url }}">&#8592; Devlog</a>
+  <header class="p-head">
+    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>{% if proj %} · <a href="{{ proj.url | relative_url }}">{{ proj.title | escape }}</a>{% endif %}</p>
+    <h1>{{ page.title | escape }}</h1>
+    {%- if page.summary %}<p class="tag">{{ page.summary | escape }}</p>{% endif %}
+  </header>
+  <div class="post-body">
+    {{ content }}
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    {%- if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>Older</span>{{ page.previous.title | escape }}</a>{% else %}<span></span>{% endif %}
+    {%- if page.next %}<a class="newer" href="{{ page.next.url | relative_url }}"><span>Newer</span>{{ page.next.title | escape }}</a>{% endif %}
+  </nav>
+</article>

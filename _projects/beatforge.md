@@ -2,7 +2,8 @@
 title: BeatForge
 order: 3
 kind: [desktop]
-status: Free
+updated: 2026-09-04
+status: Early access
 tagline: A free music-making app (DAW) for Windows, with an optional AI assistant that runs on your own key.
 image: /assets/beatforge.webp
 caption: BeatForge sequencer, tracks and mixer
