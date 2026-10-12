@@ -13,9 +13,9 @@ gallery:
   - src: /assets/ashen-hunters-classes.webp
     caption: Seven hunter classes, each with its own role
   - src: /assets/ashen-hunters-moon-warden.webp
-    caption: Moon Warden, ranged mage of frost and arcana
+    caption: The Mage, a ranged caster of frost and arcana
 facts:
   - { label: Platform, value: Windows }
   - { label: Engine, value: Godot }
 ---
-Pick one of seven hunter classes, from the sword-and-shield Warden of the Gate to the Moon Warden, a ranged mage of frost and arcana. Fight with weighty, skill-based combat. PvP arenas from 1v1 to 5v5 and a co-op overworld around the market town of Hollowmere are in development.
+Pick one of seven hunter classes, from the sword-and-shield Warrior to the Mage, a ranged caster of frost and arcana. Fight with weighty, skill-based combat. PvP arenas from 1v1 to 5v5 and a co-op overworld around the market town of Hollowmere are in development.
