@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://repousiosjim.github.io/sitemap.xml

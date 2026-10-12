@@ -11,7 +11,7 @@ facts:
   - { label: Version, value: v0.1.0 }
   - { label: Price, value: Free }
 links:
-  - { label: Site, href: "https://repousiosjim.github.io/beatforge-site/" }
-  - { label: Download, href: "https://github.com/RepousiosJim/beatforge-site/releases/latest" }
+  - { label: Download for Windows, href: "https://github.com/RepousiosJim/beatforge-site/releases/latest" }
+  - { label: Website, href: "https://repousiosjim.github.io/beatforge-site/" }
 ---
 Build tracks with a step sequencer, piano roll, arrangement timeline, mixer with effects, and automation lanes. Record or import WAV audio, and export to WAV, MP3 or MIDI. An AI assistant helps only when you ask, using your own OpenRouter key.

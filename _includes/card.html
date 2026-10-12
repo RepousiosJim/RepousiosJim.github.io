@@ -1,14 +1,15 @@
 {%- assign p = include.project -%}
-{%- assign shots = p.gallery | size | plus: 1 -%}
+{%- assign shots = p.gallery | size -%}
+{%- if p.image -%}{%- assign shots = shots | plus: 1 -%}{%- endif -%}
 <a class="card" href="{{ p.url | relative_url }}" data-kind="{{ p.kind | join: ' ' }}{% if p.code %} code{% endif %}">
   {%- if p.image %}
-  <div class="thumb"><img src="{{ p.image | relative_url }}" alt="{{ p.title }}" loading="lazy" width="1440" height="900">{% if shots > 1 %}<span class="count">{{ shots }} screenshots</span>{% endif %}</div>
+  <div class="thumb">{% include img.html src=p.image alt="" sizes="(max-width: 760px) calc(100vw - 40px), 340px" lazy=true %}{% if shots > 1 %}<span class="count" aria-hidden="true">{{ shots }} screenshots</span>{% endif %}</div>
   {%- else %}
-  <div class="thumb text"><span>{{ p.title }}</span></div>
+  <div class="thumb placeholder" aria-hidden="true"><span>Screenshots soon</span></div>
   {%- endif %}
   <div class="meta">
-    <h3>{{ p.title }}</h3>
-    <p class="line">{{ p.tagline }}</p>
+    <h3>{{ p.title | escape }}</h3>
+    <p class="line">{{ p.tagline | escape }}</p>
     {% include badges.html project=p %}
   </div>
 </a>
