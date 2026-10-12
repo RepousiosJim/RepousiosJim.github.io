@@ -11,7 +11,7 @@ image: /assets/ev-scooter.webp
 caption: Performance analysis view
 facts:
   - { label: Platform, value: "Web, installable as a PWA" }
-  - { label: Version, value: v1.4.0 }
+  - { label: Version, value: v1.3.3 }
   - { label: Code, value: Open source (MIT) }
 links:
   - { label: Open, href: "https://ev-scooter-calculator.vercel.app" }

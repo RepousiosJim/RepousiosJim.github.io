@@ -10,7 +10,7 @@ image: /assets/beatforge.webp
 caption: BeatForge sequencer, tracks and mixer
 facts:
   - { label: Platform, value: Windows 10/11 }
-  - { label: Version, value: v0.1.0 }
+  - { label: Version, value: v0.2.5 }
   - { label: Price, value: Free }
 links:
   - { label: Download for Windows, href: "https://github.com/RepousiosJim/beatforge-site/releases/latest" }
