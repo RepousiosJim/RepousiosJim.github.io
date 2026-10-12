@@ -6,6 +6,7 @@ Each project is one file in `_projects/`, published at `/work/<file-name>/`.
 ```yaml
 ---
 title: Project Name
+repo: RepousiosJim/project-repo  # optional: lets the weekly sync update `updated` and the Version fact
 order: 3                  # position in every list (lower comes first); projects without it go last
 spotlight: true           # optional: the one project shown large on the home page (needs an image)
 kind: [games, desktop]    # any of: games, desktop, web (add new kinds under `kinds:` in _config.yml)
@@ -71,3 +72,18 @@ Create a free account at goatcounter.com and set `goatcounter:` in `_config.yml`
 ## Checks
 Every pull request runs `.github/workflows/check.yml`: it checks the project files (`tools/check_projects.rb`),
 builds the site with the GitHub Pages toolchain and checks every internal link and image.
+
+## Automatic dates and versions
+`.github/workflows/sync-projects.yml` runs every Monday (and on demand from the Actions tab → "Sync project
+dates and versions" → Run workflow). For every project with a `repo:` it sets `updated:` to the repo's latest
+commit date and a `Version` fact to the latest release (or highest version tag), checks that the site still
+builds, then commits to `main`.
+
+Private repos need a token, because the workflow's own token can only read public repos:
+1. GitHub → Settings → Developer settings → Fine-grained personal access tokens → Generate new token.
+2. Resource owner: RepousiosJim. Repository access: only the private project repos
+   (Ashen-Hunters-Gemelongames, bridgefiles). Permissions: Contents → Read-only (Metadata is added automatically).
+3. Copy the token, then in this repo: Settings → Secrets and variables → Actions → New repository secret,
+   name `PORTFOLIO_SYNC_TOKEN`.
+
+Text, screenshots and status badges are not synced: edit those by hand.

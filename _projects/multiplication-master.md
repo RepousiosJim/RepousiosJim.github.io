@@ -1,6 +1,7 @@
 ---
 title: Multiplication Master
 order: 6
+repo: RepousiosJim/multiplication-master
 kind: [games, web]
 started: 2026-02-27
 updated: 2026-02-27

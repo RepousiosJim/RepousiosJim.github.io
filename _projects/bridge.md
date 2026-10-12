@@ -1,6 +1,7 @@
 ---
 title: Bridge
 order: 2
+repo: RepousiosJim/bridgefiles
 kind: [desktop]
 started: 2026-05-01
 updated: 2026-10-11
