@@ -2,14 +2,17 @@
 title: Gems-Rush
 order: 4
 kind: [games, web]
-status: Live
+started: 2025-05-24
+updated: 2025-05-30
+status: Released
 code: true
-tagline: A match-3 puzzle game with seven elemental gems that you play in the browser.
+tagline: A match-3 puzzle game with five elemental gems that you play in the browser.
 image: /assets/gems-rush.webp
 caption: Gems-Rush board
 facts:
   - { label: Platform, value: Web }
   - { label: Stack, value: Next.js }
+  - { label: Multiplayer, value: Planned }
   - { label: Code, value: Open source (MIT) }
 links:
   - { label: Play, href: "https://gems-rush.vercel.app" }

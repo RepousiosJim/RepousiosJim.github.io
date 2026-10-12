@@ -1,0 +1,20 @@
+---
+layout: default
+title: "Devlog · Gemelon Studios"
+description: Development notes and progress updates from Gemelon Studios.
+---
+<section class="intro wrap">
+  <h1>Devlog</h1>
+  <p>Development notes and progress updates. Follow along with the <a href="{{ '/devlog/feed.xml' | relative_url }}">RSS feed</a>.</p>
+</section>
+<section class="wrap devlog" aria-label="Posts">
+  {%- if site.posts.size > 0 %}
+  <ul class="post-list">
+    {%- for post in site.posts %}
+    {% include post-item.html post=post show_project=true %}
+    {%- endfor %}
+  </ul>
+  {%- else %}
+  <p class="muted">No posts yet.</p>
+  {%- endif %}
+</section>

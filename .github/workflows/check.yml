@@ -1,0 +1,27 @@
+name: Check site
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Check project files
+        run: ruby tools/check_projects.rb
+      - name: Build with the GitHub Pages toolchain
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      - name: Check links and images
+        run: >
+          bundle exec htmlproofer _site
+          --disable-external
+          --ignore-urls "/feed.xml/"

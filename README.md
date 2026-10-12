@@ -12,6 +12,8 @@ kind: [games, desktop]    # any of: games, desktop, web (add new kinds under `ki
 status: Live              # Live / Free / In development / Prototype / anything else
 code: true                # optional: open source (adds a badge and the Open source filter)
 tagline: One sentence shown on cards and as the page's share description.
+started: 2026-05-01       # optional: shown as "Started May 2026" (only when you know it)
+updated: 2026-10-11       # optional: shown on cards and the page as "Updated Oct 2026"
 image: /assets/name.webp  # 1440x900 (16:10) WebP; leave out for a placeholder card
 caption: Caption for the main image in the screenshot viewer
 gallery:                  # optional extra screenshots (16:10 or 16:9 WebP)
@@ -47,3 +49,25 @@ or file name listed under `exclude:` in `_config.yml` (README.md, AGENTS.md, CLA
 
 ## Preview locally
 With Ruby: `gem install github-pages webrick`, then `jekyll serve` and open http://localhost:4000.
+
+## Devlog
+Posts are Markdown files in `_posts/` named `YYYY-MM-DD-short-title.md`, published at `/devlog/YYYY/MM/short-title/`
+and in the feed at `/devlog/feed.xml`.
+
+```yaml
+---
+title: "Post title"
+project: ashen-hunters     # optional: the project file name; links the post and lists it on that project's page
+summary: One sentence shown in lists and share previews.
+image: /assets/name.webp   # optional: share image
+---
+Post text in Markdown.
+```
+
+## Visitor stats (optional)
+Create a free account at goatcounter.com and set `goatcounter:` in `_config.yml` to your code
+(the part before `.goatcounter.com`). Leave it empty to load no tracking at all.
+
+## Checks
+Every pull request runs `.github/workflows/check.yml`: it checks the project files (`tools/check_projects.rb`),
+builds the site with the GitHub Pages toolchain and checks every internal link and image.

@@ -2,7 +2,9 @@
 title: Multiplication Master
 order: 6
 kind: [games, web]
-status: Live
+started: 2026-02-27
+updated: 2026-02-27
+status: Released
 code: true
 tagline: A times-tables practice game for kids aged 6 to 10 that runs in any browser.
 image: /assets/multiplication-master.webp

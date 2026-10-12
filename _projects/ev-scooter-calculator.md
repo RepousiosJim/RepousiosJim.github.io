@@ -2,14 +2,15 @@
 title: EV Scooter Calculator
 order: 5
 kind: [web]
-status: Live
+updated: 2026-10-12
+status: Early access
 code: true
 tagline: A web calculator that estimates an electric scooter's range, top speed and acceleration from its specs.
 image: /assets/ev-scooter.webp
 caption: Performance analysis view
 facts:
   - { label: Platform, value: "Web, installable as a PWA" }
-  - { label: Version, value: v1.4.0 (early access) }
+  - { label: Version, value: v1.4.0 }
   - { label: Code, value: Open source (MIT) }
 links:
   - { label: Open, href: "https://ev-scooter-calculator.vercel.app" }

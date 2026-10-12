@@ -11,6 +11,15 @@ theme: null
 
 plugins:
   - jekyll-sitemap
+  - jekyll-feed
+
+# Devlog posts live in _posts/ as YYYY-MM-DD-title.md.
+permalink: /devlog/:year/:month/:title/
+feed:
+  path: devlog/feed.xml
+
+# Optional visitor stats: set to your GoatCounter code (the part before .goatcounter.com).
+goatcounter: ""
 
 collections:
   projects:
@@ -22,6 +31,10 @@ defaults:
       type: projects
     values:
       layout: project
+  - scope:
+      type: posts
+    values:
+      layout: post
 
 # Project types: the badge on each card, and the filter button label.
 kinds:

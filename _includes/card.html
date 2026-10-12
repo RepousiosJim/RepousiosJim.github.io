@@ -10,6 +10,7 @@
   <div class="meta">
     <h3>{{ p.title | escape }}</h3>
     <p class="line">{{ p.tagline | escape }}</p>
+    {%- if p.updated %}<p class="updated">Updated <time datetime="{{ p.updated | date: '%Y-%m-%d' }}">{{ p.updated | date: "%b %Y" }}</time></p>{% endif %}
     {% include badges.html project=p %}
   </div>
 </a>

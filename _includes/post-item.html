@@ -1,0 +1,11 @@
+{%- assign post = include.post -%}
+{%- assign ppath = "/work/" | append: post.project | append: "/" -%}
+{%- assign proj = site.projects | where: "url", ppath | first -%}
+<li class="post-item">
+  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time>
+  <div>
+    <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+    {%- if post.summary %}<p>{{ post.summary | escape }}</p>{% endif %}
+    {%- if proj and include.show_project %}<span class="badge">{{ proj.title | escape }}</span>{% endif %}
+  </div>
+</li>

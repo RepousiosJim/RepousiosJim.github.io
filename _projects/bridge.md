@@ -2,7 +2,9 @@
 title: Bridge
 order: 2
 kind: [desktop]
-status: Self-hosted
+started: 2026-05-01
+updated: 2026-10-11
+status: In development
 tagline: A self-hosted drive between your phone and your own PC that keeps your files as real files on disk.
 image: /assets/bridge.webp
 caption: Bridge on desktop and phone
@@ -17,6 +19,6 @@ gallery:
 facts:
   - { label: Platform, value: "Windows app, phone via PWA" }
   - { label: Stack, value: "Next.js, Tauri, SQLite (Prisma)" }
-  - { label: Status, value: Self-hosted }
+  - { label: Hosting, value: Self-hosted on your own PC }
 ---
 Files, Markdown notes and a shared clipboard between your phone and your PC, plus Google Drive import and a sync folder. Every file keeps its real name in real folders on your own disk, so there is nothing to export if you stop using Bridge. Reach it from outside your home network through Tailscale, only if you want to.

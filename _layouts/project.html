@@ -27,9 +27,11 @@ layout: default
       </div>
       {%- endif %}
     </div>
-    {%- if page.facts %}
+    {%- if page.facts or page.updated %}
     <dl class="facts">
       {%- for f in page.facts %}<div><dt>{{ f.label | escape }}</dt><dd>{{ f.value | escape }}</dd></div>{% endfor %}
+      {%- if page.started %}<div><dt>Started</dt><dd><time datetime="{{ page.started | date: '%Y-%m' }}">{{ page.started | date: "%b %Y" }}</time></dd></div>{% endif %}
+      {%- if page.updated %}<div><dt>Updated</dt><dd><time datetime="{{ page.updated | date: '%Y-%m-%d' }}">{{ page.updated | date: "%b %Y" }}</time></dd></div>{% endif %}
     </dl>
     {%- endif %}
   </div>
@@ -43,6 +45,19 @@ layout: default
       <a href="{{ g.src | relative_url }}" data-shot="{{ forloop.index0 | plus: offset }}" data-src="{{ g.src | relative_url }}" data-caption="{{ g.caption | escape }}">{% include img.html src=g.src alt="" sizes="(max-width: 760px) calc(100vw - 40px), 260px" lazy=true %}<span>{{ g.caption | escape }}</span></a>
       {%- endfor %}
     </div>
+  </section>
+  {%- endif %}
+
+  {%- assign slug = page.url | split: "/" | last -%}
+  {%- assign related = site.posts | where: "project", slug -%}
+  {%- if related.size > 0 %}
+  <section class="related">
+    <h2>From the devlog</h2>
+    <ul class="post-list">
+      {%- for post in related limit: 3 %}
+      {% include post-item.html post=post %}
+      {%- endfor %}
+    </ul>
   </section>
   {%- endif %}
 
