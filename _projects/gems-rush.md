@@ -4,7 +4,7 @@ order: 4
 repo: RepousiosJim/Gems-Rush
 kind: [games, web]
 started: 2025-05-24
-updated: 2025-05-30
+updated: 2026-10-12
 status: Released
 code: true
 tagline: A match-3 puzzle game with five elemental gems that you play in the browser.
