@@ -1,16 +1,20 @@
+{%- comment -%}
+A project "scene": full-bleed screenshot with the title over it.
+Params: project, wide (spans both columns), spotlight (hidden until a filter is picked). Uses `cover` when set, else `image`.
+{%- endcomment -%}
 {%- assign p = include.project -%}
-{%- assign shots = p.gallery | size -%}
-{%- if p.image -%}{%- assign shots = shots | plus: 1 -%}{%- endif -%}
-<a class="card" href="{{ p.url | relative_url }}" data-kind="{{ p.kind | join: ' ' }}{% if p.code %} code{% endif %}">
-  {%- if p.image %}
-  <div class="thumb">{% include img.html src=p.image alt="" sizes="(max-width: 760px) calc(100vw - 40px), 340px" lazy=true %}{% if shots > 1 %}<span class="count" aria-hidden="true">{{ shots }} screenshots</span>{% endif %}</div>
+{%- assign pic = p.cover | default: p.image -%}
+{%- if include.wide -%}{%- assign sizes = "100vw" -%}{%- else -%}{%- assign sizes = "(max-width: 860px) 100vw, 50vw" -%}{%- endif -%}
+<a class="scene{% if include.wide %} wide{% endif %}" href="{{ p.url | relative_url }}" data-kind="{{ p.kind | join: ' ' }}{% if p.code %} code{% endif %}"{% if include.spotlight %} data-spotlight hidden{% endif %}>
+  {%- if pic %}
+  {% include img.html src=pic alt="" sizes=sizes lazy=true %}
   {%- else %}
-  <div class="thumb placeholder" aria-hidden="true"><span>Screenshots soon</span></div>
+  <div class="static" aria-hidden="true"></div><span class="no-footage" aria-hidden="true">No footage yet</span>
   {%- endif %}
-  <div class="meta">
+  <div class="scene-copy">
+    {% include badges.html project=p %}
     <h3>{{ p.title | escape }}</h3>
     <p class="line">{{ p.tagline | escape }}</p>
     {%- if p.updated %}<p class="updated">Updated <time datetime="{{ p.updated | date: '%Y-%m-%d' }}">{{ p.updated | date: "%b %Y" }}</time></p>{% endif %}
-    {% include badges.html project=p %}
   </div>
 </a>

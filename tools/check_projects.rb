@@ -30,6 +30,7 @@ Dir["_projects/*.md"].sort.each do |path|
 
   images = []
   images << data["image"] if data["image"]
+  images << data["cover"] if data["cover"]
   Array(data["gallery"]).each { |g| images << g["src"] }
   images.each do |src|
     file = src.sub(%r{\A/}, "")
