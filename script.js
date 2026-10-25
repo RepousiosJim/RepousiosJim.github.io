@@ -1,8 +1,16 @@
+// Scenes run wide, pair, pair, wide...; a scene left alone in a pair row goes wide too.
+function layout(visible) {
+  visible.forEach((c, i) => {
+    const slot = i % 3;
+    c.classList.toggle("wide", slot === 0 || (slot === 1 && i === visible.length - 1));
+  });
+}
+
 function filters() {
   const group = document.querySelector(".filters");
   if (!group) return;
   const buttons = group.querySelectorAll("button");
-  const cards = document.querySelectorAll(".index .card");
+  const cards = [...document.querySelectorAll(".index .scene")];
   const status = document.querySelector(".index [role=status]");
   group.hidden = false;
   buttons.forEach(b => b.addEventListener("click", () => {
@@ -10,10 +18,13 @@ function filters() {
     buttons.forEach(x => x.setAttribute("aria-pressed", x === b));
     let shown = 0;
     cards.forEach(c => {
-      const hit = f === "all" || c.dataset.kind.split(" ").includes(f);
+      // The spotlight project is already the feature at the top, so "All" leaves its scene out.
+      const hit = f === "all" ? !("spotlight" in c.dataset) : c.dataset.kind.split(" ").includes(f);
       c.hidden = !hit;
       if (hit) shown++;
     });
+    if (f === "all") shown = cards.length; // the spotlight counts: it is the feature at the top
+    layout(cards.filter(c => !c.hidden));
     const name = b.firstChild.textContent.trim();
     status.textContent = `${name}: ${shown} ${shown === 1 ? "project" : "projects"} shown`;
   }));
@@ -59,3 +70,8 @@ function viewer() {
 
 filters();
 viewer();
+
+// Wide tables in posts scroll sideways on phones; make them reachable by keyboard.
+document.querySelectorAll(".post-body table").forEach(t => {
+  if (t.scrollWidth > t.clientWidth) t.tabIndex = 0;
+});

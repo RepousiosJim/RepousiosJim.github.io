@@ -8,14 +8,15 @@ Each project is one file in `_projects/`, published at `/work/<file-name>/`.
 title: Project Name
 repo: RepousiosJim/project-repo  # optional: lets the weekly sync update `updated` and the Version fact
 order: 3                  # position in every list (lower comes first); projects without it go last
-spotlight: true           # optional: the one project shown large on the home page (needs an image)
+spotlight: true           # optional: the full-screen feature at the top of the home page (needs an image)
 kind: [games, desktop]    # any of: games, desktop, web (add new kinds under `kinds:` in _config.yml)
 status: Live              # Live / Free / In development / Prototype / anything else
 code: true                # optional: open source (adds a badge and the Open source filter)
 tagline: One sentence shown on cards and as the page's share description.
 started: 2026-05-01       # optional: shown as "Started May 2026" (only when you know it)
 updated: 2026-10-11       # optional: shown on cards and the page as "Updated Oct 2026"
-image: /assets/name.webp  # 1440x900 (16:10) WebP; leave out for a placeholder card
+image: /assets/name.webp  # 1440x900 (16:10) WebP; leave out and the project shows TV static
+cover: /assets/name-3.webp # optional: a different image for its tile in the work list
 caption: Caption for the main image in the screenshot viewer
 gallery:                  # optional extra screenshots (16:10 or 16:9 WebP)
   - { src: /assets/name-2.webp, caption: What this shows }
@@ -28,6 +29,14 @@ A short pitch in Markdown, shown on the project page.
 ```
 
 Quote any value that contains a colon.
+
+## Design
+The site uses a cinematic theme: a black top bar, full-bleed screenshots with letterbox bars and
+condensed titles. On the home page the spotlight project fills the screen; the work list shows the
+other projects as large tiles (one wide, then two side by side), and the spotlight's own tile only
+appears when a filter is picked. Projects without an image get animated TV static. Colours and
+fonts are the tokens at the top of `styles.css`; the fonts are self-hosted in `assets/fonts/`
+(see `FONTS.md` there for licences).
 
 ## Images
 Put full-size WebPs in `assets/`. For faster cards and galleries, also add 480px and 800px wide

@@ -4,29 +4,40 @@ layout: default
 {%- assign projects = site.projects | sort: "order", "last" -%}
 {%- assign spotlight = projects | where: "spotlight", true | first -%}
 {%- unless spotlight.image -%}{%- assign spotlight = projects | where_exp: "p", "p.image" | first -%}{%- endunless -%}
-<section class="intro wrap">
-  <h1>Independent software studio.</h1>
-  <p>Gemelon Studios makes games, desktop apps and web tools, from an action RPG in development to a free music app for Windows and small browser games.</p>
-</section>
+<h1 class="sr-only">{{ site.title }}, independent software studio</h1>
 
 {%- if spotlight %}
-<section class="wrap" aria-label="Now building">
-  <a class="spotlight" href="{{ spotlight.url | relative_url }}">
-    {% include img.html src=spotlight.image alt="" sizes="(max-width: 1100px) calc(100vw - 40px), 1060px" priority=true %}
-    <div class="shade"></div>
-    <div class="copy">
-      <span class="eyebrow">Now building</span>
-      <h2>{{ spotlight.title | escape }}</h2>
-      <p>{{ spotlight.tagline | escape }}</p>
-      {% include badges.html project=spotlight %}
-      <span class="btn primary" aria-hidden="true">View project &#8594;</span>
+<section class="stage" aria-labelledby="spotlight-title">
+  {% include img.html src=spotlight.image alt="" sizes="100vw" priority=true %}
+  <div class="stage-copy wrap">
+    <p class="kicker rec">Now building</p>
+    <h2 class="stage-title" id="spotlight-title"><a href="{{ spotlight.url | relative_url }}">{{ spotlight.title | escape }}</a></h2>
+    <p class="logline">{{ spotlight.tagline | escape }}</p>
+    {% include badges.html project=spotlight %}
+    <div class="ctas">
+      <a class="btn primary" href="{{ spotlight.url | relative_url }}">View project &#8594;</a>
+      {%- if spotlight.gallery and spotlight.gallery.size > 0 %}
+      <a class="btn" href="{{ spotlight.url | relative_url }}#screenshots">Screenshots</a>
+      {%- endif %}
     </div>
-  </a>
+    {%- if spotlight.gallery and spotlight.gallery.size > 0 %}
+    <div class="reel" aria-label="{{ spotlight.title | escape }} screenshots">
+      {%- for g in spotlight.gallery limit: 3 %}
+      <a href="{{ spotlight.url | relative_url }}#screenshots">{% include img.html src=g.src alt=g.caption sizes="128px" lazy=true %}</a>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
 </section>
 {%- endif %}
 
-<section id="work" class="index wrap" aria-labelledby="work-title">
-  <div class="index-head">
+<section class="intro wrap">
+  <p class="lead">Independent software studio.</p>
+  <p>Gemelon Studios makes games, desktop apps and web tools, from an action RPG in development to a free music app for Windows and small browser games.</p>
+</section>
+
+<section id="work" class="index" aria-labelledby="work-title">
+  <div class="index-head wrap">
     <h2 id="work-title">All work</h2>
     <div class="filters" role="group" aria-label="Filter projects" hidden>
       <button data-filter="all" aria-pressed="true">All<span class="n"><span class="sr-only">, </span>{{ projects | size }}</span></button>
@@ -40,9 +51,18 @@ layout: default
     </div>
   </div>
   <p class="sr-only" role="status" aria-live="polite"></p>
-  <div class="grid">
+  <div class="scenes">
+    {%- comment -%} The spotlight project is the feature above, so its scene only shows when a filter is on. {%- endcomment -%}
+    {%- assign shown = projects | size -%}{%- if spotlight -%}{%- assign shown = shown | minus: 1 -%}{%- endif -%}
+    {%- assign n = 0 -%}
     {%- for p in projects %}
-    {% include card.html project=p %}
+    {%- if spotlight and p.url == spotlight.url %}
+    {% include card.html project=p wide=true spotlight=true %}
+    {%- else %}
+    {%- assign slot = n | modulo: 3 -%}{%- assign n = n | plus: 1 -%}
+    {%- assign wide = false -%}{%- if slot == 0 or slot == 1 and n == shown -%}{%- assign wide = true -%}{%- endif %}
+    {% include card.html project=p wide=wide %}
+    {%- endif %}
     {%- endfor %}
   </div>
 </section>
