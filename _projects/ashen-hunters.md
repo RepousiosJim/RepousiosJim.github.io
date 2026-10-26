@@ -4,7 +4,7 @@ order: 1
 spotlight: true
 repo: RepousiosJim/Ashen-Hunters-Gemelongames
 kind: [games, desktop]
-updated: 2026-10-19
+updated: 2026-10-26
 status: In development
 tagline: "A third-person action RPG: choose one of seven hunter classes, master weighty skill-based combat, and prove it in PvP arenas."
 image: /assets/ashen-hunters.webp
